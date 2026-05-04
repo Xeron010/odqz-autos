@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ODQZ Autos - Premium vehicle marketplace with luxury cars and exclusive deals">
+    <title>ODQZ Autos - Luxury Automotive Marketplace</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #0f0f0f;
+        }
+        
+        header {
+            background: #1a1a1a;
+            padding: 20px 0;
+            border-bottom: 2px solid #ffd700;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffd700;
+            letter-spacing: 2px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            font-size: 13px;
+        }
+        
+        nav a:hover {
+            color: #ffd700;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 100px 20px;
+            border-bottom: 2px solid #ffd700;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 54px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero-text h1 span {
+            color: #ffd700;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+        
+        .search-form {
+            background: #2d2d2d;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .form-row input, .form-row select {
+            padding: 12px 15px;
+            border: 1px solid #444;
+            background: #1a1a1a;
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: #ffd700;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255,215,0,0.4);
+        }
+        
+        .hero-visual {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-radius: 8px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 140px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: white;
+            font-weight: 800;
+        }
+        
+        .section-title span {
+            color: #ffd700;
+        }
+        
+        .featured-section {
+            background: #0f0f0f;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .vehicle-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .vehicle-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255,215,0,0.3);
+            border: 1px solid #ffd700;
+        }
+        
+        .vehicle-image {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            position: relative;
+        }
+        
+        .vehicle-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ffd700;
+            color: #1a1a1a;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        
+        .vehicle-info {
+            padding: 25px;
+        }
+        
+        .vehicle-info h3 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .vehicle-specs {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .vehicle-specs span {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        
+        .vehicle-price {
+            font-size: 24px;
+            color: #ffd700;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .features-section {
+            background: #1a1a1a;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card p {
+            color: #999;
+        }
+        
+        .brands-section {
+            background: #0f0f0f;
+        }
+        
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        
+        .brand-card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+        
+        .brand-card:hover {
+            border-color: #ffd700;
+            background: #2d2d2d;
+        }
+        
+        .brand-logo {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+        
+        .brand-card h3 {
+            color: white;
+            font-size: 18px;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a1a;
+            padding: 80px 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .stat {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+        }
+        
+        .cta-section {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 2px solid #ffd700;
+        }
+        
+        .cta-section h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+        
+        footer {
+            background: #0a0a0a;
+            color: #999;
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 2px solid #ffd700;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🏎️ ODQZ AUTOS</div>
+            <ul>
+                <li><a href="#vehicles">Vehicles</a></li>
+                <li><a href="#brands">Brands</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Find Your <span>Dream Car</span></h1>
+                <p>Premium vehicles, luxury brands, and exclusive deals on the market. Your perfect automotive match awaits.</p>
+                <div class="search-form">
+                    <div class="form-row">
+                        <select>
+                            <option>Make/Brand</option>
+                            <option>Mercedes-Benz</option>
+                            <option>BMW</option>
+                            <option>Porsche</option>
+                            <option>Ferrari</option>
+                        </select>
+                        <select>
+                            <option>Body Type</option>
+                            <option>Sedan</option>
+                            <option>SUV</option>
+                            <option>Coupe</option>
+                            <option>Convertible</option>
+                        </select>
+                        <input type="number" placeholder="Min Price">
+                        <input type="number" placeholder="Max Price">
+                    </div>
+                    <a href="#vehicles" class="btn">Search Vehicles</a>
+                </div>
+            </div>
+            <div class="hero-visual">🚗</div>
+        </div>
+    </section>
+
+    <section class="featured-section" id="vehicles">
+        <div class="container">
+            <h2 class="section-title">Featured <span>Vehicles</span></h2>
+            <div class="featured-grid">
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        🏎️
+                        <div class="vehicle-badge">EXCLUSIVE</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>2024 Mercedes-AMG GT</h3>
+                        <div class="vehicle-specs">
+                            <span>585 HP</span>
+                            <span>0-60 in 3.0s</span>
+                        </div>
+                        <div class="vehicle-price">$285,000</div>
+                        <a href="#" class="btn" style="font-size: 12px; padding: 10px 20px;">View Details</a>
+                    </div>
+                </div>
+
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        🏁
+                        <div class="vehicle-badge">LIMITED</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>2024 Porsche 911 Turbo</h3>
+                        <div class="vehicle-specs">
+                            <span>640 HP</span>
+                            <span>0-60 in 2.7s</span>
+                        </div>
+                        <div class="vehicle-price">$425,000</div>
+                        <a href="#" class="btn" style="font-size: 12px; padding: 10px 20px;">View Details</a>
+                    </div>
+                </div>
+
+                <div class="vehicle-card">
+                    <div class="vehicle-image">
+                        🚙
+                        <div class="vehicle-badge">LUXURY</div>
+                    </div>
+                    <div class="vehicle-info">
+                        <h3>2024 BMW M760i xDrive</h3>
+                        <div class="vehicle-specs">
+                            <span>625 HP</span>
+                            <span>0-60 in 3.0s</span>
+                        </div>
+                        <div class="vehicle-price">$182,000</div>
+                        <a href="#" class="btn" style="font-size: 12px; padding: 10px 20px;">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why ODQZ <span>Autos</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✓</div>
+                    <h3>Certified Vehicles</h3>
+                    <p>All vehicles inspected and certified by expert mechanics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Transactions</h3>
+                    <p>Safe, transparent deals with complete documentation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Full History</h3>
+                    <p>Complete vehicle history and service records provided.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>Expert Support</h3>
+                    <p>Dedicated specialists to help you find the perfect car.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="brands-section" id="brands">
+        <div class="container">
+            <h2 class="section-title">Premium <span>Brands</span></h2>
+            <div class="brands-grid">
+                <div class="brand-card">
+                    <div class="brand-logo">🔱</div>
+                    <h3>Maserati</h3>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">🏎️</div>
+                    <h3>Ferrari</h3>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">🐎</div>
+                    <h3>Lamborghini</h3>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">👑</div>
+                    <h3>Rolls-Royce</h3>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">💎</div>
+                    <h3>Bentley</h3>
+                </div>
+                <div class="brand-card">
+                    <div class="brand-logo">🚘</div>
+                    <h3>Aston Martin</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Vehicles Listed</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Happy Buyers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">$2B+</div>
+                    <div class="stat-label">Total Sales</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Ready to Drive Your Dream?</h2>
+            <p>Browse our premium collection or contact our specialists today</p>
+            <a href="#vehicles" class="btn">Explore Vehicles</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 ODQZ Autos. All rights reserved.</p>
+    </footer>
+</body>
+</html>
